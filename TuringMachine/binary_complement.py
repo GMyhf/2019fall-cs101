@@ -8,7 +8,7 @@ transition_function = {("init","0"):("init", "1", "R"),
                        }
 final_states = {"final"}
 
-t = TuringMachine("010011 ", 
+t = TuringMachine("010011001", 
                   initial_state = "init",
                   final_states = final_states,
                   transition_function=transition_function)
@@ -18,5 +18,5 @@ print("Input on Tape:\n" + t.get_tape())
 while not t.final():
     t.step()
 
-print("Result of the Turing machine calculation:")    
+print("Result of the Turing machine calculation:")
 print(t.get_tape())

@@ -13,11 +13,11 @@ class Tape(object):
         
     def __str__(self):
         s = ""
-        min_used_index = min(self.__tape.keys()) 
+        min_used_index = min(self.__tape.keys())
         max_used_index = max(self.__tape.keys())
         for i in range(min_used_index, max_used_index):
             s += self.__tape[i]
-        return s    
+        return s
    
     def __getitem__(self,index):
         if index in self.__tape:
@@ -31,8 +31,8 @@ class Tape(object):
         
 class TuringMachine(object):
     
-    def __init__(self, 
-                 tape = "", 
+    def __init__(self,
+                 tape = "",
                  blank_symbol = " ",
                  initial_state = "",
                  final_states = None,
@@ -50,7 +50,7 @@ class TuringMachine(object):
         else:
             self.__final_states = set(final_states)
         
-    def get_tape(self): 
+    def get_tape(self):
         return str(self.__tape)
     
     def step(self):
