@@ -13,7 +13,7 @@ transition_function = {("q1","1"):("q1", "1", "R"),
                        }
 final_states = {"q3"}
 
-t = TuringMachine("111 1111 ", 
+t = TuringMachine(tape = "1111 111 ", 
                   initial_state = "q1",
                   final_states = final_states,
                   transition_function=transition_function)
@@ -24,5 +24,5 @@ while not t.final():
     t.step()
     #print(t.get_tape())
 
-print("Result of the Turing machine calculation:")    
+print("Result of the Turing machine calculation:")
 print(t.get_tape())
