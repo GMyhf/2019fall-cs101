@@ -11,7 +11,7 @@ final_states = {"final"}
 t = TuringMachine(tape = "010011001", 
                   initial_state = "init",
                   final_states = final_states,
-                  transition_function=transition_function)
+                  transition_function = transition_function)
 
 print("Input on Tape:\n" + t.get_tape())
 

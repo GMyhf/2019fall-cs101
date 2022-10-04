@@ -16,7 +16,7 @@ final_states = {"q3"}
 t = TuringMachine(tape = "1111 111 ", 
                   initial_state = "q1",
                   final_states = final_states,
-                  transition_function=transition_function)
+                  transition_function = transition_function)
 
 print("Input on Tape:\n" + t.get_tape())
 
