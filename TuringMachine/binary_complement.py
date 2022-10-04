@@ -8,7 +8,7 @@ transition_function = {("init","0"):("init", "1", "R"),
                        }
 final_states = {"final"}
 
-t = TuringMachine("010011001", 
+t = TuringMachine(tape = "010011001", 
                   initial_state = "init",
                   final_states = final_states,
                   transition_function=transition_function)

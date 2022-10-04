@@ -1,5 +1,5 @@
 #ref: https://www.python-course.eu/turing_machine.php
-class Tape(object):
+class Tape:
     
     blank_symbol = " "
     
@@ -29,7 +29,7 @@ class Tape(object):
         self.__tape[pos] = char 
 
         
-class TuringMachine(object):
+class TuringMachine:
     
     def __init__(self,
                  tape = "",
