@@ -8,7 +8,7 @@ Updated 2243 GMT+8 Sep 4, 2023
 
 2023年9月4日 ，为了统计出如图1所示的 codeforces.com 的题目类型、难度分布的热力图，从 https://github.com/GMyhf/2019fall-cs101 找到了 20191120_CodeforceGuide.pptx，以及 codeforces_v0.3.py。
 
-![image-20230904231127747](https://raw.githubusercontent.com/GMyhf/img/main/img/image-20230904231127747.png)
+![image-20230904232838495](https://raw.githubusercontent.com/GMyhf/img/main/img/image-20230904232838495.png)
 
 图1. codeforces.com 的题目类型、难度分布
 
