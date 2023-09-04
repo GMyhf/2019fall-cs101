@@ -11,6 +11,7 @@ updated on Nov. 3, 2019 by Hongfei Yan
 
 import re
 import urllib.request
+from urllib.request import Request
 from bs4 import BeautifulSoup
 import os
 import csv
@@ -18,7 +19,18 @@ import time
 
 #%% retrieve the problem set
 def spider(url):
-    response = urllib.request.urlopen(url)
+    req = Request(
+        url=url,
+        headers={'User-Agent': 'Mozilla/5.0'}
+    )
+    try:
+        response = urllib.request.urlopen(req)
+    except urllib.error.HTTPError as e:
+        print("Error:", e.code)
+        import sys;
+        sys.exit(0)
+
+    #response = urllib.request.urlopen(url)
     soup = BeautifulSoup(response.read(), 'html.parser')
     pattern = {'name': 'tr'}
     content = soup.findAll(**pattern)
@@ -48,7 +60,7 @@ def spider(url):
     
 codeforces = {}
 wait = 15 # wait time to avoid the blocking of spider
-last_page = 56 # the total page number of problem set page
+last_page = 89 # the total page number of problem set page
 url = ['http://codeforces.com/problemset/page/%d' % page for page in range(1,last_page+1)]
 for foo in url:
     print('Processing URL %s' % foo)
@@ -156,3 +168,4 @@ def outputMatrix(name, data):
     
 outputMatrix('Matrix-Solved.csv', matrix_solved)
 outputMatrix('Matrix-Freq.csv', matrix_freq)
+
