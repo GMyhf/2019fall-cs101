@@ -1,6 +1,6 @@
 # codeforces.com 的题目类型、难度分布
 
-Updated 2243 GMT+8 Sep 4, 2023								
+Updated 0854 GMT+8 Sep 5, 2023								
 
 2023 fall, Complied by Hongfei Yan
 
@@ -8,7 +8,7 @@ Updated 2243 GMT+8 Sep 4, 2023
 
 2023年9月4日 ，为了统计出如图1所示的 codeforces.com 的题目类型、难度分布的热力图，从 https://github.com/GMyhf/2019fall-cs101 找到了 20191120_CodeforceGuide.pptx，以及 codeforces_v0.3.py。
 
-![image-20230904232838495](https://raw.githubusercontent.com/GMyhf/img/main/img/image-20230904232838495.png)
+![image-20230905085418048](https://raw.githubusercontent.com/GMyhf/img/main/img/image-20230905085418048.png)
 
 图1. codeforces.com 的题目类型、难度分布
 
@@ -61,14 +61,14 @@ for foo in url:
 
 之后要正确显示出热力图，.py 还需要修改两处，都是
 
-```
+```python
 tags = codeforces[id]['tags'] 
 ```
 
 修改为 
 
-```
-tags = codeforces[id]['tags'].split(",")
+```python
+tags = map(str.strip, codeforces[id]['tags'].split(","))
 ```
 
 
@@ -76,13 +76,41 @@ tags = codeforces[id]['tags'].split(",")
 修改部分代码
 
 ```python
+import csv
+import os
+import re
+
+root = os.getcwd()
+filepath = os.path.join(root, "CodeForces-ProblemSet.csv")
+
+codeforces = {}
+
+with open(filepath, "r", encoding="utf-8") as f_in:
+    f_csv = csv.reader(f_in)
+    header = next(f_csv)  # 读取文件头
+    for row in f_csv:
+        id = row[0]
+        if id == "ID":
+            continue
+
+        title = row[1]
+        tags = row[2]
+        difficulty = row[3]
+        solved = row[4]
+        accepted = row[5]
+        # 在这里可以对每一行的数据进行处理或使用
+        codeforces[id] = {'title': title, 'tags': tags, 'difficulty': difficulty, 'solved': solved, 'accepted': 0}
+        #print(f"{id},{title},{tags},{difficulty},{solved}")
+    f_in.close()
+
+
 # %% analyze the problem set
 # initialize the difficult and tag list
 difficult_level = {}
 tags_level = {}
 for id in codeforces:
     difficult = re.findall('([A-Z])', id)[0]
-    tags = codeforces[id]['tags'].split(",")
+    tags = map(str.strip, codeforces[id]['tags'].split(","))
     difficult_level[difficult] = difficult_level.get(difficult, 0) + 1
     for tag in tags:
         tags_level[tag] = tags_level.get(tag, 0) + 1
@@ -95,7 +123,7 @@ for id in codeforces:
 for id in codeforces:
     difficult = re.findall('([A-Z])', id)[0]
     difficult_id = difficult_list.index(difficult)
-    tags = codeforces[id]['tags'].split(",")
+    tags = map(str.strip, codeforces[id]['tags'].split(","))
     solved = codeforces[id]['solved']
     for tag in tags:
         tag_id = tag_list.index(tag)
