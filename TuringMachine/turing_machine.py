@@ -15,7 +15,7 @@ class Tape:
         s = ""
         min_used_index = min(self.__tape.keys())
         max_used_index = max(self.__tape.keys())
-        for i in range(min_used_index, max_used_index):
+        for i in range(min_used_index, max_used_index + 1):
             s += self.__tape[i]
         return s
    
